@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/shared/services/login.service';
 })
 export class RegisterComponent implements OnInit {
 
+  invalidRegister:boolean = false;
 
   constructor(private fb:FormBuilder , private service : LoginService ,private router:Router) { }
 
@@ -39,6 +40,7 @@ export class RegisterComponent implements OnInit {
         },
         err =>{
           console.log(err);
+          this.invalidRegister = true;
         }
     );
 

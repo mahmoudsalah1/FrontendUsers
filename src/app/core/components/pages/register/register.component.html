@@ -46,6 +46,9 @@
                             <small class="text-danger" *ngIf='logform.controls.confirmPassword?.value != logform.controls.Password?.value'>not matched</small>
                         </div>
                       </div>
+
+                      <div *ngIf="invalidRegister" class="alert alert-danger">username is tooken  </div>
+
                       <button type="submit" class="site-btn register-btn">REGISTER</button>
                   </form>
                   <div class="switch-login">

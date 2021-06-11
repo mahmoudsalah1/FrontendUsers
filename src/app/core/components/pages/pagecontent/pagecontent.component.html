@@ -1,6 +1,3 @@
-
- <h1> payment works! </h1>
-
 <!-- <div class="container">
 
 
@@ -49,10 +46,7 @@
 
   </div> -->
 
-
-
-
-   <!-- <div class="col-6">
+<!-- <div class="col-6">
      <p>list of payments</p>
 
   <table>
@@ -70,3 +64,156 @@
   </table>
 
   </div> -->
+
+<div class="container">
+  <!-- table -->
+  <!-- <div class="row clearfix">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div> -->
+
+  <h1>Employee data</h1>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="logform" class="formgroup" class="mb-2">
+    <div class="form-floating mb-3">
+      <label for="Name">Name</label>
+      <input type="text" formControlName="Name" name="Name" class="form-control" id="Name"
+        placeholder="enter your name" />
+
+      <div *ngIf="logform.controls.Name?.touched">
+        <small class="text-danger" *ngIf="logform.controls.Name?.errors?.required">required</small>
+        <small class="text-danger" *ngIf="logform.controls.Name?.errors?.minlength">min length 5</small>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <label for="Email">Email</label>
+      <input type="Email" formControlName="Email" name="Email" class="form-control" id="Email"
+        placeholder="name@example.com" />
+
+      <div *ngIf="logform.controls.Email?.touched">
+        <small class="text-danger" *ngIf="logform.controls.Email?.errors?.required">required</small>
+        <small class="text-danger" *ngIf="logform.controls.Email?.errors?.email">email should be like :
+          name@example.com</small>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <label for="Salary">Salary</label>
+      <input type="text" formControlName="Salary" name="Salary" class="form-control" id="Salary"
+        placeholder="enter salary" />
+
+      <div *ngIf="logform.controls.Salary?.touched">
+        <small class="text-danger" *ngIf="logform.controls.Salary?.errors?.required">required</small>
+        <small class="text-danger" *ngIf="logform.controls.Salary?.errors?.minlength">min 5</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-info" [disabled]="logform.invalid">
+      Save
+    </button>
+  </form>
+
+  <!-- table -->
+  <button (click)="presentEmpData()" (click)="show = !show" class="btn btn-primary">
+    {{ show ? "hide data" : "present
+    data" }}
+  </button>
+  <div *ngIf="show">
+    <div class="row clearfix mt-2">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.salary }}</td>
+            <!-- <td> <button class="btn btn-primary"  (click)="EditEmpData(item.id,item)">Edit</button> </td> -->
+
+            <!-- edit model -->
+            <!-- Button trigger modal -->
+            <td>
+              <button type="button"  (click)="editModelData(item.id)"   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Edit
+              </button>
+            </td>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Modal title
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" >
+                    Emloyeeee data
+                    <tr>
+                      <td>  <input type="text" value="{{item.name}}"  class="border-0"> </td>
+                      <td>  <input type="text" value="{{item.email}}"  class="border-0"> </td>
+                      <td>  <input type="text" value="{{item.salary}}"  class="border-0"> </td>
+
+                    </tr>
+                    <!-- <div *ngIf="modeldata != null; else other_content">
+                      <span> {{ modeldata.name }} </span>
+                      <span> {{ modeldata.email }} </span>
+                      <span> {{ modeldata.salary }} </span>
+
+                      <ng-template #other_content>Error no data...</ng-template>
+                    </div> -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="EditEmpData(item.id,item)">
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <td>
+              <button class="btn btn-danger" (click)="deleteEmp(item.id)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,8 @@
 export class PaymentDetails {
-  paymentId:number;
   name:string;
+  email:string;
+  salary:number;
+  paymentId:number;
   phoneNum:number;
+
 }

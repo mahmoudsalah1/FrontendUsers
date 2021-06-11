@@ -22,7 +22,7 @@ export function tokenGetter(){
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: [window.location.href],  // "localhost:4200"
+        allowedDomains: [window.location.href],  // "localhost:4200"  window.location.href
         disallowedRoutes : []
       }
     })

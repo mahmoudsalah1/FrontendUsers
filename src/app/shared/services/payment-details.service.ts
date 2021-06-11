@@ -12,21 +12,53 @@ export class PaymentDetailsService {
   formData : PaymentDetails = new PaymentDetails();
   // retrievedData : PaymentDetails[];
 
-  readonly baseaUrl = "http://localhost:61295/api/PaymentDetails";
+  readonly baseaUrl = "http://localhost:45974/api/Employees";
 
-  postPaymentDetails(){
 
-    return this.http.post( this.baseaUrl , this.formData);
+
+  postEmployeetDetails() {
+
+    return this.http.post(this.baseaUrl, this.formData);
 
   }
 
-  getPaymentDetails(){
+  getEmployeetDetails() {
 
     return this.http.get(this.baseaUrl);
   }
 
-  DeletePaymentDetails(id:number){
+  editEmployeetDetails(id,emp) {
+
+    return this.http.put(`${this.baseaUrl}/${id}`,emp);
+  }
+
+
+  DeleteEmployeetDetails(id: number) {
 
     return this.http.delete(`${this.baseaUrl}/${id}`);
+
   }
+
+
+
+
+
+
+
+  // postPaymentDetails(){
+
+  //   return this.http.post( this.baseaUrl , this.formData);
+
+  // }
+
+  // getPaymentDetails(){
+
+  //   return this.http.get(this.baseaUrl);
+  // }
+
+  // DeletePaymentDetails(id:number){
+
+  //   return this.http.delete(`${this.baseaUrl}/${id}`);
+  // }
+
 }
